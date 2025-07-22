@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}

@@ -1,45 +1,46 @@
-// src/pages/AboutMe.jsx
-import {useEffect, useRef} from "react";
+import { useRef } from "react";
+import useTitleSplitAnimation from "../hooks/useTitleSplitAnimation";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import useGsapContext from "../context/GsapContext";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const AboutMe = () => {
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray(".reveal").forEach((elem) => {
-        gsap.from(elem, {
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: elem,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
+  useGsapContext(() => {
+    if (!containerRef.current) return;
+    gsap.utils.toArray(".reveal", containerRef.current).forEach((elem) => {
+      gsap.from(elem, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
       });
-    }, containerRef);
+    });
+  }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+  useTitleSplitAnimation(containerRef);
 
   return (
     <div
       ref={containerRef}
-      className="px-6 py-12 md:px-24 bg-gray-950 min-h-screen font-space-grotesk"
+      id="aboutMe"
+      className="px-6 py-12 md:px-28 bg-gray-950 min-h-screen font-space-grotesk "
     >
-      <h1 className="text-4xl md:text-5xl font-bold text-gray-50 mb-12 reveal">
+      <h1
+        id="section-title"
+        className="text-4xl md:text-5xl font-bold text-gray-200 mb-12 text-center"
+      >
         About Me
       </h1>
-
-      <div className="space-y-12">
+      <div className="flex flex-col gap-7">
         <section className="reveal bg-gray-900/50 backdrop-blur-sm border border-gray-800 p-6 rounded-2xl shadow-md shadow-indigo-500 ">
-          <h2 className="text-2xl font-semibold text-indigo-400 mb-3">
+          <h2 className="text-2xl font-semibold text-indigo-600 mb-3">
             👋 Who am I?
           </h2>
           <p className="text-gray-300 text-lg">

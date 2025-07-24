@@ -40,7 +40,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2  lg:left-4 lg:top-1/2 lg:-translate-y-1/2 z-50">
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2  lg:left-13 lg:top-1/2 lg:-translate-y-1/2 z-50">
       <div className="bg-transparent backdrop-blur-sm rounded-full border-indigo-500 border p-3 shadow-md shadow-indigo-500">
         <div className="flex lg:flex-col gap-4">
           {sections.map(({id, label, icon}) => (

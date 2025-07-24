@@ -76,7 +76,7 @@ const Home = () => {
     <div className="relative" ref={comp}>
       <div
         id="intro-slider"
-        className="absolute flex flex-col gap-10 min-h-screen p-10 bg-gray-50 top-0 left-0 font-space-grotesk z-10 w-full tracking-tight"
+        className="absolute flex flex-col gap-10 min-h-screen p-10 bg-gray-50 top-0 left-0 font-space-grotesk z-30 w-full tracking-tight"
       >
         <h1 id="title-1" className="text-6xl md:text-9xl">
           Software Engineer
@@ -90,11 +90,12 @@ const Home = () => {
       </div>
       <div
         ref={vantaRef}
-        className="flex min-h-screen justify-center items-center bg-gray-950 "
+        className="relative flex min-h-screen justify-center  items-center bg-gray-950"
       >
+        <div className="absolute inset-0 z-10 backdrop-blur-md bg-transparent"></div>
         <h1
           id="welcome"
-          className="text-6xl md:text-9xl text-gray-200 font-space-grotesk font-bold z-10"
+          className="absolute text-6xl md:text-9xl text-gray-200 rounded-full  font-space-grotesk font-bold z-20 "
         >
           Welcome.
         </h1>

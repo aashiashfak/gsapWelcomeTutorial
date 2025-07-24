@@ -34,7 +34,7 @@ const AboutMe = () => {
     >
       <h1
         id="section-title"
-        className="text-4xl md:text-5xl font-bold text-gray-200 mb-12 text-center"
+        className="text-4xl md:text-5xl font-bold text-gray-200 mb-12 text-center "
       >
         About Me
       </h1>
@@ -43,7 +43,7 @@ const AboutMe = () => {
           <h2 className="text-2xl font-semibold text-indigo-600 mb-3">
             👋 Who am I?
           </h2>
-          <p className="text-gray-300 text-lg">
+          <p className="text-gray-500 text-lg">
             I'm Mohammed Ashfak T, a passionate full-stack developer from
             Malappuram, Kerala. I specialize in building modern, scalable web
             applications using Django and React.

@@ -90,7 +90,7 @@ const Home = () => {
       </div>
       <div
         ref={vantaRef}
-        className="relative flex min-h-screen justify-center  items-center bg-gray-950"
+        className="relative flex h-screen w-full justify-center items-center bg-gray-950 overflow-hidden"
       >
         <div className="absolute inset-0 z-10 backdrop-blur-md bg-transparent"></div>
         <h1

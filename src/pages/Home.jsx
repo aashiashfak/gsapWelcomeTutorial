@@ -45,6 +45,8 @@ const Home = () => {
   }, comp);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 640;
+
     if (!vantaEffect) {
       setVantaEffect(
         HALO({
@@ -53,8 +55,8 @@ const Home = () => {
           mouseControls: true,
           touchControls: true,
           gyroControls: true,
-          minHeight: 150.0,
-          minWidth: 150.0,
+          minHeight: isMobile ? 200.0 : 600.0,
+          minWidth: isMobile ? 200.0 : 600.0,
           baseColor: 0x2f0795,
           backgroundColor: 0x000000,
           amplitudeFactor: 2.2,

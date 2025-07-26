@@ -18,34 +18,46 @@ const Projects = () => {
   useEffect(() => {
     const items = itemRefs.current;
 
-    // Hide all but the first card
+    // Set initial positions
     items.forEach((item, index) => {
-      if (index !== 0) {
-        gsap.set(item, {yPercent: 100});
-      }
+      gsap.set(item, {
+        yPercent: index === 0 ? 0 : 100,
+        zIndex: items.length - index,
+        opacity: index === 0 ? 1 : 0,
+      });
     });
 
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
         pin: true,
-        start: "top top",
-        end: () => `+=${items.length * 100}%`,
         scrub: 1,
+        start: "top top",
+        end: () => `+=${(items.length - 1) * window.innerHeight}`,
         invalidateOnRefresh: true,
         // markers: true,
       },
-      defaults: {ease: "none"},
     });
 
     items.forEach((item, index) => {
       if (index < items.length - 1) {
-        timeline.to(item, {scale: 0.95, borderRadius: "1rem"});
-        timeline.to(
-          items[index + 1],
-          {yPercent: 0},
-          "<" // At same time as previous ends
-        );
+        timeline
+          .to(item, {
+            yPercent: -20,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.inOut",
+          })
+          .to(
+            items[index + 1],
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            "<"
+          );
       }
     });
 
@@ -57,24 +69,26 @@ const Projects = () => {
   return (
     <section
       ref={sectionRef}
-      className="scroll-section vertical-section h-screen w-full bg-black text-white font-space-grotesk overflow-hidden"
+      className="relative h-screen w-full overflow-hidden bg-black text-white font-space-grotesk p-24"
     >
-      <div className="relative h-full w-full flex items-center justify-center px-4 md:px-24 py-12">
-        {/* Stack of Cards */}
+      {/* Inner container that respects padding */}
+      <div className="relative w-full h-full">
         {projects.map((project, index) => (
           <div
             key={index}
             ref={(el) => (itemRefs.current[index] = el)}
-            className="item absolute top-0 left-0 w-full h-full flex items-center justify-center transition-all duration-300"
+            className="absolute top-0 left-0 right-0 bottom-0 m-auto flex items-center justify-center text-4xl font-bold rounded-3xl shadow-lg"
+            style={{
+              backgroundColor: project.bg,
+              zIndex: projects.length - index,
+              padding: "1.5rem", // optional inner padding
+              margin: "1.5rem", // helps shrink the size
+              height: "100%", // let it size naturally
+              width: "100%",
+              boxSizing: "border-box", // to apply padding correctly
+            }}
           >
-            <div
-              className="w-full max-w-4xl h-[70vh] rounded-3xl shadow-2xl flex items-center justify-center text-4xl font-bold text-white"
-              style={{
-                backgroundColor: project.bg,
-              }}
-            >
-              {project.title}
-            </div>
+            {project.title}
           </div>
         ))}
       </div>

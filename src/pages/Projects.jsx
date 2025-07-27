@@ -46,7 +46,7 @@ const Projects = () => {
   return (
     <div
       ref={containerRef}
-      className="px-6 py-12 md:px-28 bg-black  font-space-grotesk"
+      className="px-6 py-12 md:px-28 bg-black  font-space-grotesk overflow-hidden"
     >
       <h1
         id="section-title"

@@ -22,8 +22,6 @@ const Projects = () => {
         scrollTrigger: {
           pin: containerRef.current,
           scrub: 0.5,
-          end: () => `+=${(projects.length - 1) * window.innerHeight}`,
-          invalidateOnRefresh : true
         },
       }
     );
@@ -57,11 +55,11 @@ const Projects = () => {
         Projects
       </h1>
 
-      <div className="p-6 lg:p-24 card relative h-screen w-full">
+      <div className="p-6 lg:p-24 card relative h-[400vh] w-full">
         {projects.map((project, index) => {
           return (
             <div
-              className={`card absolute bg-gradient-to-br ${project.gradient} p-6 rounded-xl w-[90%]  h-[60vh]`}
+              className={`card absolute bg-gradient-to-br ${project.gradient} p-6 rounded-xl w-[90%]  h-[50vh]`}
               key={project.title}
             >
               <h1>{project.title}</h1>

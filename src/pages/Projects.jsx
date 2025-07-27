@@ -12,7 +12,7 @@ const Projects = () => {
     gsap.fromTo(
       ".card:not(:first-child)",
       {
-        x: 2000,
+        x: 2100,
         rotate: -90,
       },
       {
@@ -59,7 +59,7 @@ const Projects = () => {
         {projects.map((project, index) => {
           return (
             <div
-              className={`card absolute bg-gradient-to-br ${project.gradient} p-6 rounded-xl w-[90%]  h-[50vh]`}
+              className={`card absolute bg-gradient-to-br ${project.gradient} p-4 rounded-xl w-[90%]  h-[40vh]`}
               key={project.title}
             >
               <h1>{project.title}</h1>

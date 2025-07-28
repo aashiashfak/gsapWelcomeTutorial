@@ -22,6 +22,8 @@ const Projects = () => {
       },
       {
         x: 0,
+        transform: "translateX(-50%)",
+        y: 0,
         rotate: 0,
         stagger: 0.4,
         scrollTrigger: {
@@ -69,7 +71,7 @@ const Projects = () => {
   return (
     <div
       ref={containerRef}
-      className="px-6 py-12 h-screen md:px-28 bg-black font-space-grotesk overflow-hidden"
+      className="px-6 py-12 min-h-screen md:px-28 bg-black font-space-grotesk overflow-hidden"
     >
       <h1
         id="section-title"

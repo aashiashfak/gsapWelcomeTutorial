@@ -66,7 +66,7 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`card absolute bg-gradient-to-br ${project.gradient} p-4 rounded-xl w-sm max-w-md h-[40vh]`}
+            className={`card absolute bg-gradient-to-br ${project.gradient} p-4 rounded-xl w-full max-w-md h-[40vh]`}
             style={{
               left: "50%",
               transform: "translateX(-50%)",

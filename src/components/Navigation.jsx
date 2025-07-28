@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import {HiHome, HiUser,   } from "react-icons/hi"; 
 import {GoProjectRoadmap} from "react-icons/go";
+import {TbIcons} from "react-icons/tb";
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -13,6 +14,7 @@ const Navigation = () => {
       label: "Projects",
       icon: <GoProjectRoadmap size={24} />,
     },
+    {id: "skills", label: "Skills", icon: <TbIcons size={24} />},
   ];
 
   const scrollToSection = (id) => {

@@ -9,6 +9,17 @@ export function SkillCard({skills}) {
     const card = cardRef.current;
     if (!card) return;
 
+    const handleTouchMove = (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+
+      const touch = e.touches[0];
+      handleMouseMove({clientX: touch.clientX, clientY: touch.clientY});
+    };
+
+    const handleTouchEnd = () => {
+      handleMouseLeave();
+    };
+
     const handleMouseMove = (e) => {
       const rect = card.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -56,10 +67,14 @@ export function SkillCard({skills}) {
 
     card.addEventListener("mousemove", handleMouseMove);
     card.addEventListener("mouseleave", handleMouseLeave);
+    card.addEventListener("touchmove", handleTouchMove);
+    card.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       card.removeEventListener("mousemove", handleMouseMove);
       card.removeEventListener("mouseleave", handleMouseLeave);
+      card.addEventListener("touchmove", handleTouchMove);
+      card.addEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
@@ -68,7 +83,7 @@ export function SkillCard({skills}) {
       ref={cardRef}
       className="border border-indigo-500 shadow-lg shadow-indigo-500 rounded-2xl w-full max-w-4xl p-6 relative overflow-hidden"
     >
-      <section className="grid grid-cols-5 gap-4 justify-items-center">
+      <section className="grid grid-cols-4 md:grid-cols-5 gap-4 justify-items-center">
         {skills.map((skill, index) => (
           <div
             key={skill.name}
@@ -79,8 +94,8 @@ export function SkillCard({skills}) {
               className="flex flex-col items-center justify-center gap-1 will-change-transform"
               style={{transform: "translateZ(0)"}}
             >
-              <skill.icon size={52} color={skill.color} />
-              <span className="text-gray-300 text-xs sm:text-sm font-medium">
+              <skill.icon size={32} color={skill.color} />
+              <span className="text-gray-300 text-xs sm:text-sm font-medium tracking-tight truncate">
                 {skill.name}
               </span>
             </div>

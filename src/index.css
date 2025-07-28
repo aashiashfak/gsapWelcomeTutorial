@@ -3,13 +3,12 @@
 @theme {
   --font-space-grotesk: "Space Grotesk", sans-serif;
 }
-
 @layer components {
   .card {
     color: coral;
     position: absolute;
-    top: 90;
-    left: 10;
+    /* Remove top and left from CSS, handle in inline style */
+    /* We do left: 50% + transformX(-50%) in JSX inline style for clarity */
   }
 }
 

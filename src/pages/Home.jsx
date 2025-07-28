@@ -3,6 +3,7 @@ import useGsapContext from "../context/GsapContext";
 import gsap from "gsap";
 import * as THREE from "three";
 import HALO from "vanta/dist/vanta.halo.min";
+import Type from "../components/TypeWriter";
 
 const Home = () => {
   const comp = useRef(null);
@@ -93,12 +94,12 @@ const Home = () => {
         className="relative flex h-screen w-full justify-center items-center bg-gray-950 overflow-hidden"
       >
         <div className="absolute inset-0 z-10 backdrop-blur-md bg-transparent"></div>
-        <h1
+        <div
           id="welcome"
           className="absolute text-6xl md:text-9xl text-gray-200 rounded-full  font-space-grotesk font-bold z-20 "
         >
-          Welcome.
-        </h1>
+          <Type/>
+        </div>
       </div>
     </div>
   );

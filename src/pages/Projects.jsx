@@ -28,7 +28,7 @@ const Projects = () => {
           scrub: 0.5,
           pin: true,
           start: "top top",
-          end: "+=1000", // adjust scroll distance to suit
+          end: "+=2000", 
         },
       }
     );
@@ -70,7 +70,7 @@ const Projects = () => {
             style={{
               left: "50%",
               transform: "translateX(-50%)",
-              top: 0, // all start at top 0, GSAP animates y-offset
+              top: 0, 
             }}
           >
             <h1>{project.title}</h1>

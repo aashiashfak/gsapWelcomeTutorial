@@ -7,8 +7,6 @@
   .card {
     color: coral;
     position: absolute;
-    /* Remove top and left from CSS, handle in inline style */
-    /* We do left: 50% + transformX(-50%) in JSX inline style for clarity */
   }
 }
 

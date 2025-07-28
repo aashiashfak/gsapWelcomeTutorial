@@ -84,11 +84,9 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`card flex flex-col md:flex-row items-center absolute bg-gradient-to-br ${project.gradient} p-4 rounded-xl w-full h-[70vh]`}
+            className={`card absolute left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center  bg-gradient-to-br ${project.gradient} p-4 rounded-xl w-full h-[60vh]`}
             style={{
-              left: "50%",
-              transform: "translateX(-50%)",
-              top: 0,
+              top: `${index * 10}px`,
             }}
           >
             {/* Text Section */}

@@ -2,9 +2,13 @@ import {useState, useEffect} from "react";
 import {HiHome, HiUser,   } from "react-icons/hi"; 
 import {GoProjectRoadmap} from "react-icons/go";
 import {TbIcons} from "react-icons/tb";
+import gsap from "gsap";
+import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
+
+  gsap.registerPlugin(ScrollToPlugin);
 
   const sections = [
     {id: "home", label: "Home", icon: <HiHome size={24} />},
@@ -17,10 +21,18 @@ const Navigation = () => {
     {id: "skills", label: "Skills", icon: <TbIcons size={24} />},
   ];
 
+
+
+
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({behavior: "smooth", block: "start"});
+      gsap.to(window, {
+        duration: 1.2,
+        scrollTo: {y: el, offsetY: 50}, 
+        ease: "power3.inOut",
+      });
     }
   };
 

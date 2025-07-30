@@ -57,8 +57,11 @@ const Skills = () => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col justify-center px-6 py-12 md:px-24 min-h-screen items-center font-space-grotesk bg-gray-950 "
+      className="flex flex-col justify-center px-6 pt-12 pb-28 md:px-24 min-h-screen items-center font-space-grotesk  "
     >
+      <div className="inset-0 bg-black opacity-50">
+
+      </div>
       <h1
         id="section-title"
         className="text-4xl md:text-5xl font-bold text-gray-200 mb-12 text-center"

@@ -4,6 +4,9 @@ import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import useGsapContext from "../context/GsapContext";
 import inventorySystemImg from "../assets/projectImages/InventorySytem.png";
+import evnto from "../assets/projectImages/Evento.png";
+import dateTally from "../assets/projectImages/DateTally.png";
+import seminarHall from "../assets/projectImages/SeminarHall.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,14 +19,16 @@ const Projects = () => {
     gsap.fromTo(
       ".card:not(:first-child)",
       {
-        x: 2100,
+        y: 2100,
         rotate: -90,
-        y: 0,
+        x: 0,
+        scale:-2
       },
       {
-        x: 0,
-        transform: "translateX(-50%)",
         y: 0,
+        transform: "translateX(-50%)",
+        x: 0,
+        scale:0,
         rotate: 0,
         stagger: 0.4,
         scrollTrigger: {
@@ -43,14 +48,14 @@ const Projects = () => {
       description:
         "Evento is an event booking platform designed to cater to three distinct user roles:Admin, Vendor, and User. The platform provides a comprehensive solution forevent management and ticket booking",
       gradient: "from-orange-600 via-red-700 to-pink-800",
-      image: inventorySystemImg,
+      image: evnto,
     },
     {
       title: "Date Tally",
       description:
         " DateTally is a date-based count tracker that allows users to add counts to past and current dates only, with a monthly view that displays daily entries and calculates total counts for each month.",
       gradient: "from-emerald-600 via-teal-700 to-green-800",
-      image: inventorySystemImg,
+      image: dateTally,
     },
     {
       title: "Inventory System",
@@ -64,14 +69,14 @@ const Projects = () => {
       description:
         "Created a platform for booking seminar halls with user signup/login. ",
       gradient: "from-purple-600 via-purple-700 to-indigo-800",
-      image: inventorySystemImg,
+      image: seminarHall,
     },
   ];
 
   return (
     <div
       ref={containerRef}
-      className="px-6 py-12 min-h-screen md:px-28 bg-black font-space-grotesk overflow-hidden"
+      className="px-6 py-14 min-h-screen md:px-28 font-space-grotesk overflow-hidden"
     >
       <h1
         id="section-title"
@@ -84,9 +89,10 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`card absolute left-1/2 -translate-x-1/2 flex flex-col md:flex-row items-center  bg-gradient-to-br ${project.gradient} p-4 rounded-xl w-full h-[60vh]`}
+            className={`card absolute left-1/2 backdrop-blur-lg  -translate-x-1/2 flex flex-col md:flex-row items-center bg-gray-950/60 shadow-lg shadow-indigo-500   p-4 rounded-xl w-full h-[60vh]`}
             style={{
               top: `${index * 10}px`,
+              zIndex: index + 1,
             }}
           >
             {/* Text Section */}

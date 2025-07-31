@@ -5,7 +5,6 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import useGsapContext from "../context/GsapContext";
 import inventorySystemImg from "../assets/projectImages/InventorySytem.png";
 import evnto from "../assets/projectImages/Evento.png";
-import evntoMac from "../assets/projectImages/EventoMac.jpg";
 import dateTally from "../assets/projectImages/DateTally.png";
 import seminarHall from "../assets/projectImages/SeminarHall.png";
 
@@ -49,7 +48,7 @@ const Projects = () => {
       description:
         "Evento is an event booking platform designed to cater to three distinct user roles:Admin, Vendor, and User. The platform provides a comprehensive solution forevent management and ticket booking",
       gradient: "from-orange-600 via-red-700 to-pink-800",
-      image: evntoMac,
+      image: evnto,
     },
     {
       title: "Date Tally",

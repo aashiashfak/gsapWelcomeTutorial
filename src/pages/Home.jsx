@@ -10,41 +10,16 @@ const Home = () => {
   const vantaRef = useRef(null);
   const [vantaEffect, setVantaEffect] = useState(null);
 
-  if (vantaEffect) {
-    console.log("vanta is here");
-  }
-
+  
   useGsapContext(() => {
-    const tl = gsap.timeline();
-
-    gsap.set("#welcome", {opacity: 0});
-
-    tl.from("#intro-slider", {
-      xPercent: "-100",
-      duration: 1.3,
-      delay: 0.3,
-    })
-      .from(["#title-1", "#title-2", "#title-3"], {
-        opacity: 0,
-        y: "-=30",
-        stagger: 0.7,
-      })
-      .to(["#title-1", "#title-2", "#title-3"], {
-        opacity: 0,
-        y: "-=30",
-        delay: 0.3,
-        stagger: 0.7,
-      })
-      .to("#intro-slider", {
-        xPercent: "-100",
-        duration: 1.3,
-      })
-      .to("#welcome", {
-        opacity: 1,
-        duration: 0.3,
-      });
+    gsap.fromTo(
+      "#welcome",
+      {opacity: 0, y: 30},
+      {opacity: 1, y: 0, duration: 1.2, ease: "power2.out", delay: 0.5}
+    );
   }, comp);
 
+  // Vanta Halo background
   useEffect(() => {
     const isMobile = window.innerWidth < 640;
 
@@ -76,29 +51,24 @@ const Home = () => {
   return (
     <div className="relative" ref={comp}>
       <div
-        id="intro-slider"
-        className="absolute flex flex-col gap-10 min-h-screen p-10 bg-gray-50 top-0 left-0 font-space-grotesk z-30 w-full tracking-tight"
-      >
-        <h1 id="title-1" className="text-6xl md:text-9xl">
-          Software Engineer
-        </h1>
-        <h1 id="title-2" className="text-6xl md:text-9xl">
-          Designer
-        </h1>
-        <h1 id="title-3" className="text-6xl md:text-9xl">
-          Freelancer
-        </h1>
-      </div>
-      <div
         ref={vantaRef}
-        className="relative flex h-screen w-full justify-center items-center bg-gray-950 overflow-hidden"
+        className="relative flex h-screen w-full items-center bg-gray-950 overflow-hidden"
       >
-        <div className="absolute inset-0 z-10 backdrop-blur-md bg-transparent"></div>
+        <div className="absolute inset-0 z-10 backdrop-blur" />
         <div
           id="welcome"
-          className="absolute text-6xl md:text-9xl text-gray-200 rounded-full  font-space-grotesk font-bold z-20 "
+          className="p-6 sm:px-36 text-start absolute text-gray-200 font-space-grotesk font-bold z-20"
         >
-          <Type/>
+          <h1 className=" text-3xl ">Hi There!</h1>
+          <h1 className=" text-4xl md:text-5xl  mt-6">
+            I'M{" "} 
+            <span className=" bg-clip-text mb-6 ">
+              MOHAMMED ASHFAK
+            </span>
+          </h1>
+          <div className="mt-4 text-2xl sm:text-3xl text-indigo-600">
+            <Type />
+          </div>
         </div>
       </div>
     </div>

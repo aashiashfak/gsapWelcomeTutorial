@@ -81,7 +81,7 @@ export function SkillCard({skills}) {
   return (
     <div
       ref={cardRef}
-      className="border border-indigo-500 shadow-lg shadow-indigo-500 rounded-2xl w-full max-w-4xl p-6 relative overflow-hidden"
+      className="  rounded-2xl w-full max-w-4xl p-6 relative overflow-hidden bg-gray-900/50"
     >
       <section className="grid grid-cols-4 md:grid-cols-5 gap-4 justify-items-center">
         {skills.map((skill, index) => (

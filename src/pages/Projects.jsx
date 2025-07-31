@@ -5,6 +5,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import useGsapContext from "../context/GsapContext";
 import inventorySystemImg from "../assets/projectImages/InventorySytem.png";
 import evnto from "../assets/projectImages/Evento.png";
+import evntoMac from "../assets/projectImages/EventoMac.jpg";
 import dateTally from "../assets/projectImages/DateTally.png";
 import seminarHall from "../assets/projectImages/SeminarHall.png";
 
@@ -48,7 +49,7 @@ const Projects = () => {
       description:
         "Evento is an event booking platform designed to cater to three distinct user roles:Admin, Vendor, and User. The platform provides a comprehensive solution forevent management and ticket booking",
       gradient: "from-orange-600 via-red-700 to-pink-800",
-      image: evnto,
+      image: evntoMac,
     },
     {
       title: "Date Tally",
@@ -76,22 +77,22 @@ const Projects = () => {
   return (
     <div
       ref={containerRef}
-      className="px-6 py-14 min-h-screen md:px-28 font-space-grotesk overflow-hidden"
+      className="px-6 py-16 min-h-screen md:px-28 font-space-grotesk overflow-hidden"
     >
       <h1
         id="section-title"
-        className="text-4xl md:text-5xl font-bold text-gray-200 mb-12 text-center"
+        className="text-4xl md:text-5xl font-bold text-gray-200 mb-16 text-center"
       >
-        Projects
+        My Recent <span className="text-indigo-600">Works</span>
       </h1>
 
       <div className="relative p-2 w-full">
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`card absolute left-1/2 backdrop-blur-lg  -translate-x-1/2 flex flex-col md:flex-row items-center bg-gray-950/60 shadow-lg shadow-indigo-500   p-4 rounded-xl w-full h-[60vh]`}
+            className={`card absolute left-1/2 backdrop-blur-lg  -translate-x-1/2 flex flex-col md:flex-row items-center bg-gray-900/60    p-4 rounded-xl w-full h-[60vh]`}
             style={{
-              top: `${index * 10}px`,
+              top: `${index * 20}px`,
               zIndex: index + 1,
             }}
           >
@@ -100,7 +101,7 @@ const Projects = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
                 {project.title}
               </h2>
-              <p className="text-sm md:text-base leading-relaxed">
+              <p className="text-sm md:text-base leading-relaxed text-gray-500">
                 {project.description}
               </p>
             </div>

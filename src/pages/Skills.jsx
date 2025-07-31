@@ -64,9 +64,9 @@ const Skills = () => {
       </div>
       <h1
         id="section-title"
-        className="text-4xl md:text-5xl font-bold text-gray-200 mb-12 text-center"
+        className="text-4xl md:text-5xl font-bold text-indigo-600 mb-12 text-center"
       >
-        Skills and Tools
+        Skills <span className="text-gray-200">And</span> Tools
       </h1>
 
       <SkillCard skills={mySkills} />

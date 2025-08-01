@@ -2,11 +2,11 @@ import {useRef} from "react";
 import useTitleSplitAnimation from "../hooks/useTitleSplitAnimation";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import useGsapContext from "../context/GsapContext";
 import inventorySystemImg from "../assets/projectImages/InventorySytem.png";
 import evnto from "../assets/projectImages/Evento.png";
 import dateTally from "../assets/projectImages/DateTally.png";
 import seminarHall from "../assets/projectImages/SeminarHall.png";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,32 +15,69 @@ const Projects = () => {
 
   useTitleSplitAnimation(containerRef);
 
-  useGsapContext(() => {
-    gsap.fromTo(
-      ".card:not(:first-child)",
-      {
-        y: 2100,
-        rotate: -90,
-        x: 0,
-        scale:-2
-      },
-      {
-        y: 0,
-        transform: "translateX(-50%)",
-        x: 0,
-        scale:0,
-        rotate: 0,
-        stagger: 0.4,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          scrub: 0.5,
-          pin: true,
-          start: "top top",
-          end: "+=2000",
-        },
-      }
-    );
-  });
+ useGSAP(
+   () => {
+     const firstCard = containerRef.current.querySelector(".card:first-child");
+     const otherCards = gsap.utils.toArray(
+       containerRef.current.querySelectorAll(".card:not(:first-child)")
+     );
+
+     // Animate the first card (with perspective)
+     if (firstCard) {
+       gsap.fromTo(
+         firstCard,
+         {
+           opacity: 0,
+           y: 100,
+           rotateY: -30,
+           transformPerspective: 1000,
+         },
+         {
+           opacity: 1,
+           y: 0,
+           rotateY: 0,
+           duration: 1.5,
+           ease: "power3.out",
+           scrollTrigger: {
+             trigger: firstCard,
+             start: "top 80%",
+             end: "bottom 20%",
+             toggleActions: "play none none none",
+           },
+         }
+       );
+     }
+
+     // Animate other stacked cards
+     if (otherCards.length > 0) {
+       gsap.fromTo(
+         otherCards,
+         {
+           y: 2100,
+           rotate: -90,
+           x: 0,
+           scale: -2,
+         },
+         {
+           y: 0,
+           transform: "translateX(-50%)",
+           x: 0,
+           scale: 0,
+           rotate: 0,
+           stagger: 0.4,
+           scrollTrigger: {
+             trigger: containerRef.current,
+             scrub: 0.5,
+             pin: true,
+             start: "top top",
+             end: "+=2000",
+           },
+         }
+       );
+     }
+   },
+   {scope: containerRef}
+ );
 
   const projects = [
     {

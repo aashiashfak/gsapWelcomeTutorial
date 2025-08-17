@@ -1,6 +1,7 @@
 import Navigation from "./components/Navigation";
 import StarsBg from "./components/StarsBg";
 import AboutMe from "./pages/AboutMe";
+import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
@@ -25,6 +26,9 @@ function App() {
         </section>
         <section id="skills">
           <Skills />
+        </section>
+        <section id="contact">
+          <Contact />
         </section>
       </div>
     </div>

@@ -4,6 +4,7 @@ import {GoProjectRoadmap} from "react-icons/go";
 import {TbIcons} from "react-icons/tb";
 import gsap from "gsap";
 import {ScrollToPlugin} from "gsap/ScrollToPlugin";
+import {FaPhoneAlt} from "react-icons/fa";
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -19,7 +20,9 @@ const Navigation = () => {
       icon: <GoProjectRoadmap size={24} />,
     },
     {id: "skills", label: "Skills", icon: <TbIcons size={24} />},
+    {id: "contact", label: "Contact", icon: <FaPhoneAlt size={24} />},
   ];
+  
 
 
 
@@ -30,7 +33,7 @@ const Navigation = () => {
     if (el) {
       gsap.to(window, {
         duration: 1.2,
-        scrollTo: {y: el, offsetY: 50}, 
+        scrollTo: {y: el, offsetY: 0}, 
         ease: "power3.inOut",
       });
     }

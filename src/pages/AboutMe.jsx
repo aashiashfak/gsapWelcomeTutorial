@@ -19,8 +19,8 @@ const AboutMe = () => {
           {
             opacity: 0,
             y: 100,
-            rotateY: -30,
-            transformPerspective: 1000,
+            rotateY: -35,
+            transformPerspective: 1200,
           },
           {
             opacity: 1,
@@ -29,7 +29,7 @@ const AboutMe = () => {
             duration: 1.5,
             ease: "power3.out",
             scrollTrigger: {
-              delay: 1,
+              delay: 1.3,
               trigger: el,
               start: "top 80%",
               end: "bottom 20%",

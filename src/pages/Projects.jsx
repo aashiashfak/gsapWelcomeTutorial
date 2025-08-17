@@ -113,7 +113,7 @@ const Projects = () => {
   return (
     <div
       ref={containerRef}
-      className="px-6 py-16 min-h-screen md:px-28 font-space-grotesk overflow-hidden"
+      className="px-6 py-20 min-h-screen md:px-28 font-space-grotesk overflow-hidden"
     >
       <h1
         id="section-title"
@@ -126,9 +126,9 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`card absolute left-1/2 backdrop-blur-lg  -translate-x-1/2 flex flex-col md:flex-row items-center bg-gray-900/60    p-4 rounded-xl w-full h-[60vh]`}
+            className={`card absolute left-1/2 backdrop-blur-lg  -translate-x-1/2 flex flex-col md:flex-row items-center bg-gray-900/60    p-4 rounded-xl w-full h-[55vh]`}
             style={{
-              top: `${index * 20}px`,
+              top: `${index * 10}px`,
               zIndex: index + 1,
             }}
           >

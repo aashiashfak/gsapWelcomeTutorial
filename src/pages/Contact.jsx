@@ -30,43 +30,39 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [isLoading, setIsLoading] = useState(false);
+ const handleSubmit = async (e) => {
+   e.preventDefault();
+   setIsLoading(true);
 
-    // Send main email to you
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_CD_ID,
-        formData,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          toast.success("✅ Email sent successfully!", {position: "top-right"});
+   try {
+     await emailjs.send(
+       import.meta.env.VITE_EMAILJS_SERVICE_ID,
+       import.meta.env.VITE_EMAILJS_TEMPLATE_CD_ID,
+       formData,
+       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+     );
 
-          // Clear form
-          setFormData({name: "", email: "", subject: "", message: ""});
+     toast.success("✅ Email sent successfully!");
+     setFormData({name: "", email: "", subject: "", message: ""});
 
-          // Send auto-response to the user
-          emailjs.send(
-            import.meta.env.VITE_EMAILJS_SERVICE_ID, // same service
-            import.meta.env.VITE_EMAILJS_TEMPLATE_AR_ID, // auto-response template ID
-            {
-              name: formData.name,
-              email: formData.email,
-            },
-            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-          );
-        },
-        (error) => {
-          console.log(error);
-          toast.error("❌ Failed to send email. Try again later.", {
-            position: "top-right",
-          });
-        }
-      );
-  };
+     await emailjs.send(
+       import.meta.env.VITE_EMAILJS_SERVICE_ID,
+       import.meta.env.VITE_EMAILJS_TEMPLATE_AR_ID,
+       {
+         name: formData.name,
+         email: formData.email,
+       },
+       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+     );
+   } catch (err) {
+     console.error(err);
+     toast.error("❌ Failed to send email. Try again later.");
+   } finally {
+     setIsLoading(false); 
+   }
+ };
+
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -114,7 +110,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-cyan-400 focus:bg-white/10 transition-all duration-300 rounded-2xl h-12"
+                      className="w-full px-4 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-cyan-400 focus:bg-white/10 transition-all duration-300 rounded-2xl h-10"
                     />
                   </div>
                   <div className="relative group">
@@ -125,7 +121,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-purple-400 focus:bg-white/10 transition-all duration-300 rounded-2xl h-12"
+                      className="w-full px-4 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-purple-400 focus:bg-white/10 transition-all duration-300 rounded-2xl h-10"
                     />
                   </div>
                 </div>
@@ -137,7 +133,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-pink-400 focus:bg-white/10 transition-all duration-300 rounded-2xl h-12"
+                    className="w-full px-4 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-pink-400 focus:bg-white/10 transition-all duration-300 rounded-2xl h-10"
                   />
                 </div>
 
@@ -149,16 +145,21 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-emerald-400 focus:bg-white/10 transition-all duration-300 resize-none rounded-2xl"
+                    className="w-full px-4 py-2 bg-white/5 backdrop-blur-sm  text-white placeholder:text-gray-400 focus:border-emerald-400 focus:bg-white/10 transition-all duration-300 resize-none rounded-2xl"
                   />
                 </div>
 
                 <button
+                  disabled={isLoading}
                   type="submit"
-                  className="w-full flex items-center justify-center bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold py-4 transition-all duration-500 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 group"
+                  className={`${
+                    isLoading
+                      ? "bg-gray-500"
+                      : "bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-600 hover:via-purple-600 hover:to-pink-600"
+                  } w-full flex items-center justify-center   text-white font-bold py-3 transition-all duration-500 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 group`}
                 >
-                  <FaPaperPlane className=" w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                  Launch Message
+                  <FaPaperPlane className=" w-4 h-4 mr-2 group-hover:rotate-10 transition-transform duration-300" />
+                  {isLoading ? "Sending..." : "Launch Message"}
                 </button>
               </form>
             </div>
@@ -177,13 +178,13 @@ const Contact = () => {
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4 hover:scale-105 transition-transform duration-300">
                     <div className="bg-gradient-to-r from-purple-500/30 to-pink-500/30 p-4 rounded-2xl backdrop-blur-sm border border-purple-400/30">
-                      <FaEnvelope className="w-6 h-6 text-purple-300" />
+                      <FaEnvelope className="w-4 h-4 text-purple-300" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm font-medium">Email</p>
                       <a
                         href="mailto:aashiashfak@gmail.com"
-                        className="text-white hover:text-purple-300 transition-colors font-semibold text-lg"
+                        className="text-white hover:text-purple-300 transition-colors font-semibold text-sm"
                       >
                         aashiashfak@gmail.com
                       </a>
@@ -192,28 +193,28 @@ const Contact = () => {
 
                   <div className="flex items-center space-x-4 hover:scale-105 transition-transform duration-300">
                     <div className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30 p-4 rounded-2xl backdrop-blur-sm border border-cyan-400/30">
-                      <FaPhone className="w-6 h-6 text-cyan-300" />
+                      <FaPhone className="w-4 h-4 text-cyan-300" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm font-medium">Phone</p>
                       <a
                         href="tel:+919876543210"
-                        className="text-white hover:text-cyan-300 transition-colors font-semibold text-lg"
+                        className="text-white hover:text-cyan-300 transition-colors font-semibold text-sm"
                       >
-                        +91 98765 43210
+                        +918156867040
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-4 hover:scale-105 transition-transform duration-300">
                     <div className="bg-gradient-to-r from-emerald-500/30 to-teal-500/30 p-4 rounded-2xl backdrop-blur-sm border border-emerald-400/30">
-                      <FaMapMarkerAlt className="w-6 h-6 text-emerald-300" />
+                      <FaMapMarkerAlt className="w-4 h-4 text-emerald-300" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm font-medium">
                         Location
                       </p>
-                      <p className="text-white font-semibold text-lg">
+                      <p className="text-white font-semibold text-sm">
                         Available Worldwide
                       </p>
                     </div>
